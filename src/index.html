@@ -27,7 +27,7 @@
         </div>
         <div class="flex justify-between items-center bg-zinc-200 w-full py-4 px-8">
             <div class="flex">
-                <div class="flex flex-col relative">
+                <div class="flex flex-col relative" id="brush">
                     <div class="flex items-end">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brush scale-50" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9e9e9e" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -37,28 +37,42 @@
                             <path d="M10.6 9a9 9 0 0 1 4.4 4.4" />
                           </svg>
     
-                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-select absolute bottom-1 right-0 hidden" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9e9e9e" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-select absolute bottom-1 right-0 hidden" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9e9e9e" fill="none" stroke-linecap="round" stroke-linejoin="round" id="brushOption">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                             <path d="M9 11l3 3l3 -3" />
                           </svg>
                     </div>
-                      <input type="range" name="brushSize" id="brushSize" class="absolute -bottom-2 hidden">
+                      <input 
+                      type="range" 
+                      name="brushSize" 
+                      id="brushSize" 
+                      class="absolute -bottom-2 hidden"
+                      min="1"
+                      max="80"
+                      >
                 </div>
-                <div class="flex flex-col relative">
+                <div class="flex flex-col relative" id="eraser">
                     <div class="flex items-baseline">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eraser scale-50" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9e9e9e" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                             <path d="M19 20h-10.5l-4.21 -4.3a1 1 0 0 1 0 -1.41l10 -10a1 1 0 0 1 1.41 0l5 5a1 1 0 0 1 0 1.41l-9.2 9.3" />
                             <path d="M18 13.3l-6.3 -6.3" />
                         </svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-select absolute bottom-1 right-0 hidden" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9e9e9e" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-select absolute bottom-1 right-0 hidden" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9e9e9e" fill="none" stroke-linecap="round" stroke-linejoin="round" id="eraserOption">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                             <path d="M9 11l3 3l3 -3" />
                         </svg>
                     </div>
-                    <input type="range" name="brushSize" id="brushSize" class="absolute -bottom-2 hidden">
+                    <input 
+                    type="range" 
+                    name="brushSize" 
+                    id="eraserSize" 
+                    class="absolute -bottom-2 hidden"
+                    min="1"
+                    max="80"
+                    >
                 </div>
-                <div>
+                <div id="paint">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-bucket-droplet scale-50" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9e9e9e" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                         <path d="M5 16l1.465 1.638a2 2 0 1 1 -3.015 .099l1.55 -1.737z" />
@@ -68,7 +82,7 @@
                 </div>
             </div>
 
-            <div class="flex flex-wrap w-1/2 justify-end gap-1">
+            <div class="flex flex-wrap w-1/2 justify-end gap-1" id="colorGrid">
                 <div class="h-3 w-3 bg-white"></div>
                 <div class="h-3 w-3 bg-black"></div>
                 <div class="h-3 w-3 bg-red-700"></div>
