@@ -158,9 +158,7 @@ setUp();
 
 // save to local space
 save.addEventListener('click', () => {
-    console.log(typeof canvas.toDataURL());
-    
-    // localStorage.setItem('saved file', canvas.toDataURL())
+    localStorage.setItem('saved file', canvas.toDataURL())
 })
 
 
