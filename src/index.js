@@ -6,12 +6,17 @@ const eraser = document.querySelector('#eraser')
 const paint = document.querySelector('#paint') 
 const colorGrid = document.querySelector('#colorGrid')
 
+const download = document.querySelector('#download')
+const clear = document.querySelector('#clear');
+const save = document.querySelector('#save')
+
 const brushOption = document.querySelector('#brushOption')
 const eraserOption = document.querySelector('#eraserOption')
 const brushSize = document.querySelector('#brushSize')
 const eraserSize = document.querySelector('#eraserSize')
 
-
+// canvas Color
+canvas.style.backgroundColor = '#ffffff'
 
 // Brush, Eraser and paint clicked: 
 
@@ -93,13 +98,14 @@ function rgbToHex(rgb) {
 
 let color;
 colorGrid.addEventListener('click',event => {
-    let hexCode = rgbToHex(window.getComputedStyle(event.target).backgroundColor);
+    let hexCode = rgbToHex(window.getComputedStyle(event.target).backgroundColor);    
     colorGrid.children[colorGrid.children.length - 1].value = hexCode;
-    color = hexCode;
 })
 
 colorGrid.children[colorGrid.children.length - 1].addEventListener('change', event => {
+    console.log('color changed');
     color = event.target.value;
+    init()
 })
 
 
@@ -116,7 +122,7 @@ eraserSize.addEventListener('change', event => {
     eraserSizValue = event.target.value;
 })
 
-
+// Canvas setup
 const mouse = {
     x: undefined,
     y: undefined,
@@ -127,39 +133,6 @@ canvas.addEventListener('mousemove', event => {
     mouse.y = event.clientY;
 })
 
-// const color = [
-//     "#FF0000", // Red
-//     "#00FF00", // Green
-//     "#0000FF", // Blue
-//     "#FFFF00", // Yellow
-//     "#FF00FF", // Magenta
-//     "#00FFFF", // Cyan
-//     "#000000", // Black
-//     "#FFFFFF", // White
-//     "#808080", // Gray
-//     "#FFA500"  // Orange
-// ]
-
-class MyObject {
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
-        this.radius = brushSizeValue;
-        this.color = 'black';
-    }
-
-    draw(){
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false)
-        ctx.fillStyle = this.color;
-        ctx.fill();
-    }
-
-    update(){
-
-        this.draw();
-    }
-}
 
 const setUp = () => {
     canvas.height = window.innerHeight;
@@ -168,30 +141,36 @@ const setUp = () => {
     init();
 }
 
-let ball1;
 const init = () => {
-    ball1 = new MyObject(200, 200)
-    // console.log(ball1);
+    ctx.fillRect(200, 200, 100, 100)
+    ctx.fillStyle = color;
+    ctx.fill()
     
 }
 
-const animate = () => {
-    requestAnimationFrame(animate)
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-    ball1.color = color;
-    ball1.radius = brushSizeValue;
-    ball1.update();
-}
 
 
 window.addEventListener('resize', setUp)
 setUp();
-animate();
 
 
 
 // save to local space
+save.addEventListener('click', () => {
+    console.log(typeof canvas.toDataURL());
+    
+    // localStorage.setItem('saved file', canvas.toDataURL())
+})
 
 
 // download
+download.addEventListener('click', () => {    
+    download.setAttribute('href', canvas.toDataURL())
+})
+
+// clear the canvas
+clear.addEventListener('click', () => {
+    
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+})
