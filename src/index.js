@@ -117,12 +117,20 @@ let isDrawing = false;
 let x = undefined;
 let y = undefined;
 
+canvas.addEventListener('mousedown', event => {
+    isDrawing = true
+    x = event.offsetX;
+    y = event.offsetY;
+})
 canvas.addEventListener('touchstart', event => {
     isDrawing = true
     x = event.offsetX;
     y = event.offsetY;
 })
 
+canvas.addEventListener('mouseup', () => {
+    isDrawing = false
+})
 canvas.addEventListener('touchend', () => {
     isDrawing = false
 })
