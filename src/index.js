@@ -117,13 +117,13 @@ let isDrawing = false;
 let x = undefined;
 let y = undefined;
 
-canvas.addEventListener('mousedown', event => {
+canvas.addEventListener('touchstart', event => {
     isDrawing = true
     x = event.offsetX;
     y = event.offsetY;
 })
 
-canvas.addEventListener('mouseup', () => {
+canvas.addEventListener('touchend', () => {
     isDrawing = false
 })
 
@@ -228,6 +228,7 @@ const floodfill = (x, y, targetColor, fillColor, ImageData) => {
     ctx.putImageData(ImageData, 0, 0)
 }
 canvas.addEventListener('mousemove', init)
+canvas.addEventListener('touchmove', init)
 
 window.addEventListener('resize', setUp)
 setUp();
