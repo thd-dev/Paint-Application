@@ -113,6 +113,11 @@ eraserSize.addEventListener('change', event => {
 })
 
 // Canvas setup
+
+const mouse = {
+    x: undefined,
+    y: undefined,
+}
 let isDrawing = false;
 let x = undefined;
 let y = undefined;
@@ -125,8 +130,7 @@ canvas.addEventListener('mousedown', event => {
 canvas.addEventListener('touchstart', event => {
     isDrawing = true
     x = event.targetTouches[0].clientX;
-    y = event.targetTouches[0].offsetY;
-    console.log('x: ' + x + 'y: ' + y);
+    y = event.targetTouches[0].clientY;
     
 })
 
@@ -151,12 +155,13 @@ const init = (event) => {
         ctx.lineCap = 'round';
         ctx.beginPath();
         ctx.moveTo(x, y);
-        ctx.lineTo(x, y, event.offsetX, event.offsetY);
+        ctx.lineTo(x, y, mouse.x, mouse.y);
         ctx.strokeStyle = color;
         ctx.stroke()
-
-        x = event.offsetX;
-        y = event.offsetY;
+        console.log(x, y, mouse.x, mouse.y);
+        
+        x = mouse.x;
+        y = mouse.y;
 
     }else if(erase){
         ctx.clearRect(event.offsetX, event.offsetY, eraserSizValue, eraserSizValue)
@@ -237,8 +242,16 @@ const floodfill = (x, y, targetColor, fillColor, ImageData) => {
 
     ctx.putImageData(ImageData, 0, 0)
 }
-canvas.addEventListener('mousemove', init)
-canvas.addEventListener('touchmove', init)
+canvas.addEventListener('mousemove', event => {
+    mouse.x = event.offsetX;
+    mouse.y = event.offsetY;
+    init();
+})
+canvas.addEventListener('touchmove', event => {
+    mouse.x = event.targetTouches[0].clientX;
+    mouse.y = event.targetTouches[0].clientY;
+    init();
+})
 
 window.addEventListener('resize', setUp)
 setUp();
