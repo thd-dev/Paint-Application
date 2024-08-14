@@ -136,6 +136,7 @@ canvas.addEventListener('mousedown', event => {
     y = event.offsetY;
 })
 canvas.addEventListener('touchstart', event => {
+    if(draw || erase) event.preventDefault;
     let pos = getTouchPos(event)
     isDrawing = true
     x = pos.x;
@@ -146,6 +147,7 @@ canvas.addEventListener('mouseup', () => {
     isDrawing = false
 })
 canvas.addEventListener('touchend', () => {
+    if(draw || erase) event.preventDefault;
     isDrawing = false
 })
 
@@ -155,7 +157,7 @@ const setUp = () => {
     canvas.width = window.innerWidth;
 }
 
-const init = () => {
+const init = (event) => {
     if(!isDrawing) return
 
     if(draw){
@@ -166,6 +168,7 @@ const init = () => {
         ctx.lineTo(x, y, mouse.x, mouse.y);
         ctx.strokeStyle = color;
         ctx.stroke()
+        // console.log(event.type.includes('mouse') ?'mouse' :'touch');
         
         x = mouse.x;
         y = mouse.y;
@@ -252,13 +255,14 @@ const floodfill = (x, y, targetColor, fillColor, ImageData) => {
 canvas.addEventListener('mousemove', event => {
     mouse.x = event.offsetX;
     mouse.y = event.offsetY;
-    init();
+    init(event);
 })
 canvas.addEventListener('touchmove', event => {
+    if(draw || erase) event.preventDefault;
     let pos = getTouchPos(event)
     mouse.x = pos.x;
     mouse.y = pos.y;
-    init();
+    init(event);
 })
 
 window.addEventListener('resize', setUp)
