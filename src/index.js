@@ -122,16 +122,24 @@ let isDrawing = false;
 let x = undefined;
 let y = undefined;
 
+const getTouchPos = (event) => {
+    const rect = canvas.getBoundingClientRect();
+    return {
+        x: event.targetTouches[0].clientX - rect.left,
+        y: event.targetTouches[0].clientY - rect.top
+    };
+}
+
 canvas.addEventListener('mousedown', event => {
     isDrawing = true
     x = event.offsetX;
     y = event.offsetY;
 })
 canvas.addEventListener('touchstart', event => {
+    let pos = getTouchPos(event)
     isDrawing = true
-    x = event.targetTouches[0].clientX;
-    y = event.targetTouches[0].clientY;
-    
+    x = pos.x;
+    y = pos.y; 
 })
 
 canvas.addEventListener('mouseup', () => {
@@ -247,8 +255,9 @@ canvas.addEventListener('mousemove', event => {
     init();
 })
 canvas.addEventListener('touchmove', event => {
-    mouse.x = event.targetTouches[0].clientX;
-    mouse.y = event.targetTouches[0].clientY;
+    let pos = getTouchPos(event)
+    mouse.x = pos.x;
+    mouse.y = pos.y;
     init();
 })
 
