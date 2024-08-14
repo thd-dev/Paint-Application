@@ -157,7 +157,7 @@ const setUp = () => {
     canvas.width = window.innerWidth;
 }
 
-const init = (event) => {
+const init = () => {
     if(!isDrawing) return
 
     if(draw){
@@ -254,14 +254,14 @@ const floodfill = (x, y, targetColor, fillColor, ImageData) => {
 canvas.addEventListener('mousemove', event => {
     mouse.x = event.offsetX;
     mouse.y = event.offsetY;
-    init(event);
+    init();
 })
 canvas.addEventListener('touchmove', event => {
     if(draw || erase) event.preventDefault;
     let pos = getTouchPos(event)
     mouse.x = pos.x;
     mouse.y = pos.y;
-    init(event);
+    init();
 })
 
 window.addEventListener('resize', setUp)
