@@ -126,6 +126,8 @@ canvas.addEventListener('touchstart', event => {
     isDrawing = true
     x = event.targetTouches[0].clientX;
     y = event.targetTouches[0].offsetY;
+    console.log('x: ' + x + 'y: ' + y);
+    
 })
 
 canvas.addEventListener('mouseup', () => {
