@@ -165,10 +165,9 @@ const init = (event) => {
         ctx.lineCap = 'round';
         ctx.beginPath();
         ctx.moveTo(x, y);
-        ctx.lineTo(x, y, mouse.x, mouse.y);
+        ctx.lineTo(mouse.x, mouse.y)
         ctx.strokeStyle = color;
         ctx.stroke()
-        // console.log(event.type.includes('mouse') ?'mouse' :'touch');
         
         x = mouse.x;
         y = mouse.y;
