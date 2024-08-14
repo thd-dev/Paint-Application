@@ -264,8 +264,6 @@ canvas.addEventListener('touchmove', event => {
 window.addEventListener('resize', setUp)
 setUp();
 
-
-
 // save to local space
 save.addEventListener('click', () => {
     localStorage.setItem('saved file', canvas.toDataURL())
