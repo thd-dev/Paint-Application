@@ -158,7 +158,6 @@ const init = (event) => {
         ctx.lineTo(x, y, mouse.x, mouse.y);
         ctx.strokeStyle = color;
         ctx.stroke()
-        console.log(x, y, mouse.x, mouse.y);
         
         x = mouse.x;
         y = mouse.y;
