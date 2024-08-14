@@ -155,7 +155,7 @@ const setUp = () => {
     canvas.width = window.innerWidth;
 }
 
-const init = (event) => {
+const init = () => {
     if(!isDrawing) return
 
     if(draw){
@@ -171,7 +171,7 @@ const init = (event) => {
         y = mouse.y;
 
     }else if(erase){
-        ctx.clearRect(event.offsetX, event.offsetY, eraserSizValue, eraserSizValue)
+        ctx.clearRect(mouse.x, mouse.y, eraserSizValue, eraserSizValue)
     }
 }
 canvas.addEventListener('click',  event => {
