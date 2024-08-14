@@ -124,8 +124,8 @@ canvas.addEventListener('mousedown', event => {
 })
 canvas.addEventListener('touchstart', event => {
     isDrawing = true
-    x = event.offsetX;
-    y = event.offsetY;
+    x = event.targetTouches[0].clientX;
+    y = event.targetTouches[0].offsetY;
 })
 
 canvas.addEventListener('mouseup', () => {
@@ -149,7 +149,7 @@ const init = (event) => {
         ctx.lineCap = 'round';
         ctx.beginPath();
         ctx.moveTo(x, y);
-        ctx.quadraticCurveTo(x, y, event.offsetX, event.offsetY);
+        ctx.lineTo(x, y, event.offsetX, event.offsetY);
         ctx.strokeStyle = color;
         ctx.stroke()
 
