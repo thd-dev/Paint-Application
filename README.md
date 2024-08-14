@@ -1,10 +1,12 @@
 # JavaScript Paint Application with Canvas
 
-This project is a simple paint application that uses the HTML canvas element, JavaScript, and Tailwind CSS. The application allows users to draw, erase, and fill colors on the canvas. It also includes options for adjusting brush and eraser sizes, saving the drawing, and downloading it.
+This project is a simple paint application that uses the HTML canvas element, JavaScript, and Tailwind CSS. The application allows users to draw, erase, and fill colors on the canvas. It also includes options for adjusting brush and eraser sizes, clearing the canvas, and saving and downloading the drawing.
+
+#### [LiveDemo](https://thd-dev.github.io/Paint-Application/)
 
 ## Installation
 
-Before you start, make sure to install the necessary Node packages, including Tailwind CSS. Run the following command:
+Before you start, install the necessary Node packages, including Tailwind CSS. Run the following command:
 
 ```bash
 npm install
